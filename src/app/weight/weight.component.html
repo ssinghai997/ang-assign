@@ -1,0 +1,32 @@
+<div style="padding: 80px;" class="bgColor">
+    <div>
+        <h1 style="text-align: center;">Your weight entries</h1>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <button class="btn btn-outline-primary" (click)="change()">{{showBodyfat?'Hide':'Show'}} Bodyfat</button>
+    </div>
+    <div class="table-responsive table-bordered">
+        <table class="table">
+            <thead>               
+                    <tr >
+                        <td style="text-align:justify; padding-left: 80px;">Date</td>
+                        <td>Weight</td>
+                        <td *ngIf="showBodyfat">Body Fat %</td>
+                    </tr>                         
+            </thead>
+            <tbody>
+                <tr *ngFor="let wei of weights">
+                    <td><span class="btn fa fa-trash"></span>&nbsp;&nbsp;
+                        <span class=" btn fa fa-info-circle"></span>&nbsp;&nbsp;
+                        <a >{{wei.date|date}} </a></td>
+                    <td>{{wei.weight}} lbs</td>
+                    <td *ngIf="showBodyfat">{{wei.bodyfat|percent}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+   <!--  -->
+</div>
+
+<app-newweightentry></app-newweightentry>

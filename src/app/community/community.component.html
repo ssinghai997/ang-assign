@@ -1,0 +1,13 @@
+<h2>Healthy me community</h2>
+<h3>comments</h3>
+<!-- <table class="table table-borderless">
+    <tr *ngFor="let comment of comments">
+        <p>{{comment.commenter}} said: {{comment.comment}}</p>
+    </tr>
+    <input type="text" placeholder="new comment">
+</table>
+<input type="text" placeholder="new comment"> -->
+<li class="list-unstyled" *ngFor="let comment of comments">
+    {{comment.commenter}} said: {{comment.comment}}
+</li>
+<input type="text" placeholder="new comment">
