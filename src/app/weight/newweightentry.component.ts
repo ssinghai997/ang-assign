@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Iweight } from './iweight';
 import { WeightService } from './weight.service';
@@ -9,14 +9,15 @@ import { WeightService } from './weight.service';
   templateUrl: './newweightentry.component.html',
   styleUrls: ['./newweightentry.component.css']
 })
-export class NewweightentryComponent implements  OnChanges {
+export class NewweightentryComponent implements OnInit{
   com:Iweight
-  showBodyfat:boolean
+  @Input() showBodyfat
+  @Output() emitter=new EventEmitter<object>()
   date:string
   weight:number
   bodyfat:number
   weightForm:FormGroup
-  weightUrl:string='assets/data/weight.json'
+  // weightUrl:string='assets/data/weight.json'
 
   constructor(private _weightService:WeightService, private fb:FormBuilder,private http:HttpClient) { }
 
@@ -27,17 +28,18 @@ export class NewweightentryComponent implements  OnChanges {
       weight:['',Validators.required]
     })
   }
-  
-  ngOnChanges(){
-    this.showBodyfat=this._weightService.toggleTable()
+
+  saveWeightForm():void{
+    //console.log("child")
+    this.emitter.emit(this.weightForm.value)
   }
-  saveCustForm():void{
-    console.log(this.weightForm)
-  }
-  postData(){
-    this.http.post(this.weightUrl,{
-      com:this.weightForm}).toPromise().then((data:any)=>{
-        console.log(data)
-      })
-  }
+  // postData(){
+  //   this.emitter.emit(this.weightForm.value)
+    
+  // }
+  //saveData(custForm:NgForm):void{
+    //    console.log(custForm.form)
+    //    console.log(`Saved Cust Data: ${JSON.stringify(custForm.value)}`)
+    //    this.create.emit(custForm.value)
+    //    }
 }

@@ -3,14 +3,14 @@
         <div class=" card-header"><h4>New weight entries</h4></div>
         <div class="container">
             <form novalidate class=" form-inline card-body row"
-            (ngSubmit)="postData()" 
+            (ngSubmit)="saveWeightForm()"
             [formGroup]= "weightForm">
                 
                 <input type="text" id="weightId" formControlName="weight"        
                 placeholder="Weight(required)"                 
                 class="form-control"              
                 />&nbsp; &nbsp;
-                <input class="form-control" type="text" formControlName="bodyfat" placeholder="Body Fat %"/>&nbsp;&nbsp;
+                <input class="form-control" *ngIf="showBodyfat" type="text" formControlName="bodyfat" placeholder="Body Fat %"/>&nbsp;&nbsp;
                 <input style="margin-top: 10px;" formControlName="date" class="form-control" type="text" placeholder="Date(dd/mm/yyyy)"/>&nbsp;&nbsp;     
              </form>
 
@@ -18,7 +18,7 @@
                 class="btn btn-primary btn-sm col-1"
                 style="margin-left:5px;"
                 value="Save"
-                (click)="postData()"
+                (click)="saveWeightForm()"
                 [title]="weightForm.valid ? 'Save the data':
                 'Button is disabled when form is invalid'"
                 [disabled]="!weightForm.valid"/>

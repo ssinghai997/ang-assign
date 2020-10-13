@@ -4,7 +4,7 @@
     </div>
 
     <div style="margin-bottom: 30px;">
-        <button class="btn btn-outline-primary" (click)="change()">{{showBodyfat?'Hide':'Show'}} Bodyfat</button>
+        <button class="btn btn-outline-primary" (click)="toggleTable()">{{showBodyfat?'Hide':'Show'}} Bodyfat</button>
     </div>
     <div class="table-responsive table-bordered">
         <table class="table">
@@ -28,5 +28,9 @@
     </div>    
    <!--  -->
 </div>
+<!-- <br> Value : {{weightForm.value| json}} -->
 
-<app-newweightentry></app-newweightentry>
+
+
+<app-newweightentry [showBodyfat]="showBodyfat" (emitter)="createNewEntry($event)" ></app-newweightentry>
+<!-- (emitter)="createNewEntry($event)" -->

@@ -8,7 +8,7 @@ import { catchError,map,tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class WeightService {
-  weightUrl:string='assets/data/weight.json'
+  weightUrl:string='https://localhost:44387/api/weightapi'
   weight:Iweight
   showBodyfat: boolean=true;
 
@@ -18,10 +18,10 @@ export class WeightService {
     return this._httpclient.get<Iweight[]>(this.weightUrl)
   }
 
-  toggleTable():boolean{
-     this.showBodyfat=!this.showBodyfat
-     return this.showBodyfat
-  }
+  // toggleTable():boolean{
+  //    this.showBodyfat=!this.showBodyfat
+  //    return this.showBodyfat
+  // }
   // createService(param: Iweight): Observable<Iweight> {
   //   let headers = new Headers({ 'Content-Type': 'application/json' });
   //   let body = JSON.stringify(param);
